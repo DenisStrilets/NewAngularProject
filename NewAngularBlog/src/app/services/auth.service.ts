@@ -28,7 +28,7 @@ export class AuthService    {
         const body = { UserName:user.username,Password:user.password };
         let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-debugger;
+ 
     return this.http.post(this.constHelper.getHost() + 'api/Auth/login',  body,{ headers })
      .map(res=>res.json())
      .map(res=>{

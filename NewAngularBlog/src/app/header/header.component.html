@@ -1,0 +1,51 @@
+
+
+<main>
+   
+   
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand"  routerLinkActive="active" routerLink="allPost">Personal blog</a>
+        </div>
+  
+       
+        <div class="navbar-collapse collapse">
+          <ul  *ngIf="status" class="nav navbar-nav">
+            <li>
+              <a   routerLinkActive="active" routerLink="newPost">New Post</a>
+            </li>
+          </ul>
+  
+         
+          <ul *ngIf="!status" class="nav navbar-nav pull-right">
+            <li>
+              <a routerLinkActive="active" routerLink="registration">Registration</a>
+            </li>
+            <li>
+              <a  routerLinkActive="active" routerLink="login">LogIn</a>
+            </li>
+          </ul>
+
+          
+          <ul *ngIf="status" class="nav navbar-nav pull-right">
+             
+            <li>
+              <a class="nav-link" (click)="logout()" href="#">LogOut</a>
+            </li>
+          </ul>
+
+        </div>
+  
+      </div>
+    </div>
+  
+    <div class="container body-content">
+      <router-outlet></router-outlet>
+      <hr />
+      <footer>
+        <p>&copy; 2017  </p>
+      </footer>
+    </div>
+  </main>
+  

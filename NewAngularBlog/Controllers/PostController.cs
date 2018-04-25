@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using NewAngularBlog.BLL.Services;
@@ -9,6 +10,7 @@ using ViewModels.Models;
 
 namespace NewAngularBlog.Controllers
 {
+  
   [Produces("application/json")]
   [Route("api/Post")]
   public class PostController : Controller

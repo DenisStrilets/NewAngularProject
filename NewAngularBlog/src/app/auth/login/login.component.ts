@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
           .subscribe((result)=>{
             
               if(result){
-                this.router.navigateByUrl('/allPost');
+                this.router.navigate(['/allPost']);
+                location.reload();
                 return;
               }
               

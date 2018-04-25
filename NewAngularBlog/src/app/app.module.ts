@@ -18,6 +18,8 @@ import { UserService } from './services/user.service';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './services/auth.service';
 import { HttpModule } from '@angular/http';
+import { HeaderComponent } from './header/header.component';
+import { AuthGuard } from './auth.guard';
 
 
 
@@ -27,7 +29,7 @@ const appRoutes: Routes = [
   { path: 'allPost', component: AllPostComponent },
   { path: "allPost/post/:postId", component: PostComponent },
   { path: 'post/:postId', component: PostComponent },
-  { path: "newPost", component: NewPostComponent},
+  { path: "newPost", component: NewPostComponent,canActivate: [AuthGuard]},
   { path: "registration", component: RegistrationComponent},
   {path: "login", component: LoginComponent}
   
@@ -43,6 +45,7 @@ const appRoutes: Routes = [
     AllPostComponent,
     PostComponent,
     NewPostComponent,
+    HeaderComponent,
     RegistrationComponent,
     LoginComponent
   ],
@@ -61,7 +64,7 @@ const appRoutes: Routes = [
     ConstHelperService ,
     UserService,
     AuthService,
-     
+    AuthGuard,
   {provide: APP_BASE_HREF, useValue : '/' }
 
   ],

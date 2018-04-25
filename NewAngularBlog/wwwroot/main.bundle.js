@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<main>\r\n  <div class=\"navbar navbar-inverse navbar-fixed-top\">\r\n    <div class=\"container\">\r\n      <div class=\"navbar-header\">\r\n        <a class=\"navbar-brand\" routerLink=\"allPost\">Personal blog</a>\r\n      </div>\r\n\r\n      <div class=\"navbar-collapse collapse\">\r\n        <ul class=\"nav navbar-nav\">\r\n          <li>\r\n            <a routerLink=\"newPost\">New Post</a>\r\n          </li>\r\n        </ul>\r\n\r\n        <ul class=\"nav navbar-nav pull-right\">\r\n          <li>\r\n            <a routerLink=\"registration\">Registration</a>\r\n          </li>\r\n          <li>\r\n            <a routerLink=\"login\">LogIn</a>\r\n          </li>\r\n        </ul>\r\n\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"container body-content\">\r\n    <router-outlet></router-outlet>\r\n    <hr />\r\n    <footer>\r\n      <p>&copy; 2017  </p>\r\n    </footer>\r\n  </div>\r\n</main>\r\n"
+module.exports = "<!-- \r\n<main>\r\n  <div class=\"navbar navbar-inverse navbar-fixed-top\">\r\n    <div class=\"container\">\r\n      <div class=\"navbar-header\">\r\n        <a class=\"navbar-brand\" routerLink=\"allPost\">Personal blog</a>\r\n      </div>\r\n\r\n      <div class=\"navbar-collapse collapse\">\r\n        <ul class=\"nav navbar-nav\">\r\n          <li>\r\n            <a routerLink=\"newPost\">New Post</a>\r\n          </li>\r\n        </ul>\r\n\r\n        <ul class=\"nav navbar-nav pull-right\">\r\n          <li>\r\n            <a routerLink=\"registration\">Registration</a>\r\n          </li>\r\n          <li>\r\n            <a routerLink=\"login\">LogIn</a>\r\n          </li>\r\n        </ul>\r\n\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"container body-content\">\r\n    <router-outlet></router-outlet>\r\n    <hr />\r\n    <footer>\r\n      <p>&copy; 2017  </p>\r\n    </footer>\r\n  </div>\r\n</main> -->\r\n<app-header></app-header>\r\n\r\n<div class=\"container-fluid\"> \r\n\t<router-outlet></router-outlet>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -77,6 +77,8 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__auth_login_login_component__ = __webpack_require__("./src/app/auth/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_auth_service__ = __webpack_require__("./src/app/services/auth.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__angular_http__ = __webpack_require__("./node_modules/@angular/http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__header_header_component__ = __webpack_require__("./src/app/header/header.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__auth_guard__ = __webpack_require__("./src/app/auth.guard.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -101,12 +103,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var appRoutes = [
     { path: '', component: __WEBPACK_IMPORTED_MODULE_4__post_allPosts_allPost_component__["a" /* AllPostComponent */] },
     { path: 'allPost', component: __WEBPACK_IMPORTED_MODULE_4__post_allPosts_allPost_component__["a" /* AllPostComponent */] },
     { path: "allPost/post/:postId", component: __WEBPACK_IMPORTED_MODULE_5__post_post_detail_post_component__["a" /* PostComponent */] },
     { path: 'post/:postId', component: __WEBPACK_IMPORTED_MODULE_5__post_post_detail_post_component__["a" /* PostComponent */] },
-    { path: "newPost", component: __WEBPACK_IMPORTED_MODULE_6__post_newPost_newPost_component__["a" /* NewPostComponent */] },
+    { path: "newPost", component: __WEBPACK_IMPORTED_MODULE_6__post_newPost_newPost_component__["a" /* NewPostComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_19__auth_guard__["a" /* AuthGuard */]] },
     { path: "registration", component: __WEBPACK_IMPORTED_MODULE_13__auth_registration_registration_component__["a" /* RegistrationComponent */] },
     { path: "login", component: __WEBPACK_IMPORTED_MODULE_15__auth_login_login_component__["a" /* LoginComponent */] }
 ];
@@ -120,6 +124,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_4__post_allPosts_allPost_component__["a" /* AllPostComponent */],
                 __WEBPACK_IMPORTED_MODULE_5__post_post_detail_post_component__["a" /* PostComponent */],
                 __WEBPACK_IMPORTED_MODULE_6__post_newPost_newPost_component__["a" /* NewPostComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__header_header_component__["a" /* HeaderComponent */],
                 __WEBPACK_IMPORTED_MODULE_13__auth_registration_registration_component__["a" /* RegistrationComponent */],
                 __WEBPACK_IMPORTED_MODULE_15__auth_login_login_component__["a" /* LoginComponent */]
             ],
@@ -137,12 +142,56 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_9__services_hostHelper_service__["a" /* ConstHelperService */],
                 __WEBPACK_IMPORTED_MODULE_14__services_user_service__["a" /* UserService */],
                 __WEBPACK_IMPORTED_MODULE_16__services_auth_service__["a" /* AuthService */],
+                __WEBPACK_IMPORTED_MODULE_19__auth_guard__["a" /* AuthGuard */],
                 { provide: __WEBPACK_IMPORTED_MODULE_10__angular_common__["a" /* APP_BASE_HREF */], useValue: '/' }
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/auth.guard.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthGuard; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__("./src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AuthGuard = /** @class */ (function () {
+    function AuthGuard(user, router) {
+        this.user = user;
+        this.router = router;
+    }
+    AuthGuard.prototype.canActivate = function () {
+        if (!this.user.isLoggedIn()) {
+            this.router.navigate(['api/Auth/login']);
+            return false;
+        }
+        return true;
+    };
+    AuthGuard = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]])
+    ], AuthGuard);
+    return AuthGuard;
 }());
 
 
@@ -198,7 +247,8 @@ var LoginComponent = /** @class */ (function () {
         this.authService.login(user)
             .subscribe(function (result) {
             if (result) {
-                _this.router.navigateByUrl('/allPost');
+                _this.router.navigate(['/allPost']);
+                location.reload();
                 return;
             }
         }, function (error) { return _this.errors = error; });
@@ -288,6 +338,60 @@ var RegistrationComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]])
     ], RegistrationComponent);
     return RegistrationComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/header/header.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\r\n\r\n<main>\r\n   \r\n   \r\n    <div class=\"navbar navbar-inverse navbar-fixed-top\">\r\n      <div class=\"container\">\r\n        <div class=\"navbar-header\">\r\n          <a class=\"navbar-brand\"  routerLinkActive=\"active\" routerLink=\"allPost\">Personal blog</a>\r\n        </div>\r\n  \r\n       \r\n        <div class=\"navbar-collapse collapse\">\r\n          <ul  *ngIf=\"status\" class=\"nav navbar-nav\">\r\n            <li>\r\n              <a   routerLinkActive=\"active\" routerLink=\"newPost\">New Post</a>\r\n            </li>\r\n          </ul>\r\n  \r\n         \r\n          <ul *ngIf=\"!status\" class=\"nav navbar-nav pull-right\">\r\n            <li>\r\n              <a routerLinkActive=\"active\" routerLink=\"registration\">Registration</a>\r\n            </li>\r\n            <li>\r\n              <a  routerLinkActive=\"active\" routerLink=\"login\">LogIn</a>\r\n            </li>\r\n          </ul>\r\n\r\n          \r\n          <ul *ngIf=\"status\" class=\"nav navbar-nav pull-right\">\r\n             \r\n            <li>\r\n              <a class=\"nav-link\" (click)=\"logout()\" href=\"#\">LogOut</a>\r\n            </li>\r\n          </ul>\r\n\r\n        </div>\r\n  \r\n      </div>\r\n    </div>\r\n  \r\n    <div class=\"container body-content\">\r\n      <router-outlet></router-outlet>\r\n      <hr />\r\n      <footer>\r\n        <p>&copy; 2017  </p>\r\n      </footer>\r\n    </div>\r\n  </main>\r\n  "
+
+/***/ }),
+
+/***/ "./src/app/header/header.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__("./src/app/services/auth.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var HeaderComponent = /** @class */ (function () {
+    function HeaderComponent(authService) {
+        this.authService = authService;
+    }
+    HeaderComponent.prototype.logout = function () {
+        this.authService.logout();
+    };
+    HeaderComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscription = this.authService.authNavStatus$.subscribe(function (status) { return _this.status = status; });
+    };
+    HeaderComponent.prototype.ngOnDestroy = function () {
+        this.subscription.unsubscribe();
+    };
+    HeaderComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-header',
+            template: __webpack_require__("./src/app/header/header.component.html"),
+            providers: [__WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]])
+    ], HeaderComponent);
+    return HeaderComponent;
 }());
 
 
@@ -616,7 +720,6 @@ var AuthService = /** @class */ (function () {
         var body = { UserName: user.username, Password: user.password };
         var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]();
         headers.append('Content-Type', 'application/json');
-        debugger;
         return this.http.post(this.constHelper.getHost() + 'api/Auth/login', body, { headers: headers })
             .map(function (res) { return res.json(); })
             .map(function (res) {
