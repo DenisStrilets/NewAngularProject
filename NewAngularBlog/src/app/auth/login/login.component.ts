@@ -42,8 +42,6 @@ export class LoginComponent implements OnInit {
             
               if(result){
                 this.router.navigate(['/allPost']);
-                location.reload();
-                return;
               }
               
           },
@@ -53,4 +51,3 @@ export class LoginComponent implements OnInit {
         }
 
       }     
-        
