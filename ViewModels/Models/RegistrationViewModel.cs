@@ -12,5 +12,9 @@ namespace ViewModels.Models
         public string Location { get; set; }
 
         public bool Exist { get; set; }
+
+        public string Role { get; set; }
+
+
     }
 }

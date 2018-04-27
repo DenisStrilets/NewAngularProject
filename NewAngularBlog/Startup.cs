@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
- 
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,8 +23,8 @@ using NewAngularBlog.Helpers;
 
 namespace NewAngularBlog
 {
-    public class Startup
-    {
+  public class Startup
+  {
     private const string SecretKey = "iNivDmHLpUA223sqsfhqGbMRdRj1PVkH"; // todo: get this from somewhere secure
     private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
 
@@ -39,7 +39,7 @@ namespace NewAngularBlog
 
 
     public void ConfigureServices(IServiceCollection services)
-        {
+    {
 
       string connection = Configuration.GetConnectionString("DefaultConnection");
 
@@ -52,12 +52,13 @@ namespace NewAngularBlog
       services.AddIdentity<AppUser, IdentityRole>
                (o =>
                {
-                  // configure identity options
-                  o.Password.RequireDigit = false;
+                 // configure identity options
+                 o.Password.RequireDigit = false;
                  o.Password.RequireLowercase = false;
                  o.Password.RequireUppercase = false;
                  o.Password.RequireNonAlphanumeric = false;
                  o.Password.RequiredLength = 6;
+                 
                })
                .AddEntityFrameworkStores<ApplicationDbContext>()
                .AddDefaultTokenProviders();
@@ -86,26 +87,26 @@ namespace NewAngularBlog
 
       services.AddMvc();
 
-         services.AddAutoMapper();
+      services.AddAutoMapper();
 
       services.AddCors();
 
     }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+      app.Use(async (context, next) =>
+      {
+        await next();
+        if (context.Response.StatusCode == 404 &&
+                 !Path.HasExtension(context.Request.Path.Value) &&
+                 !context.Request.Path.Value.StartsWith("/api/"))
         {
-            app.Use(async (context, next) =>
-            {
-                await next();
-                if (context.Response.StatusCode == 404 &&
-                   !Path.HasExtension(context.Request.Path.Value) &&
-                   !context.Request.Path.Value.StartsWith("/api/"))
-                {
-                    context.Request.Path = "/index.html";
-                    await next();
-                }
-            });
+          context.Request.Path = "/index.html";
+          await next();
+        }
+      });
 
       app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
@@ -127,8 +128,10 @@ namespace NewAngularBlog
       };
 
       app.UseMvcWithDefaultRoute();
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-        }
+      app.UseDefaultFiles();
+      app.UseStaticFiles();
     }
+
+
+  }
 }

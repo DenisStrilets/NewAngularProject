@@ -21,5 +21,11 @@ namespace NewAngularBlog.DAL.Entities
 
         [ForeignKey(nameof(PostId))]
         public virtual Post Post { get; set; }
+
+
+         
+
+
+
     }
 }

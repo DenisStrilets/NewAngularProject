@@ -51,7 +51,16 @@ namespace NewAngularBlog.Controllers
 
       userIdentity.Name = model.Name;
 
-      var result = await _userManager.CreateAsync(userIdentity, model.Password);
+      
+
+
+     var result = await _userManager.CreateAsync(userIdentity, model.Password);
+
+
+      if (result.Succeeded)
+      {
+        await _userManager.AddToRoleAsync(userIdentity, "user");
+      }
 
 
 

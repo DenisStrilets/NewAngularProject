@@ -11,7 +11,8 @@ import { AuthService } from "../services/auth.service";
   export class HeaderComponent implements OnInit,OnDestroy{
     
     status: boolean;
- subscription:Subscription;  
+  subscription: Subscription;
+  
 
  constructor(private authService:AuthService) {   
 
@@ -22,7 +23,7 @@ logout() {
  }
 
  ngOnInit() {
-    this.subscription = this.authService.authNavStatus$.subscribe(status => this.status = status);
+   this.subscription = this.authService.authNavStatus$.subscribe(status => this.status = status);
     
   }
 

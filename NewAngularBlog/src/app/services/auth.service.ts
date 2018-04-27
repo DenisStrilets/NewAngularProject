@@ -14,13 +14,20 @@ export class AuthService    {
 
     authNavStatus$ = this._authNavStatusSource.asObservable();
 
+
     private loggedIn = false;
+
+
+    private _roleStatusSource = new BehaviorSubject<string>(" ");
+
+  roleNavStatus$ = this._roleStatusSource.asObservable();
 
     constructor(private constHelper: ConstHelperService,private http: Http) {
       
          
         this.loggedIn = !!localStorage.getItem('auth_token');
-        this._authNavStatusSource.next(this.loggedIn);
+      this._authNavStatusSource.next(this.loggedIn);
+      this._roleStatusSource.next(" ");
 
     }
 
@@ -34,8 +41,14 @@ export class AuthService    {
      .map(res=>{
             localStorage.setItem('auth_token',res.auth_token);
            this.loggedIn = true;
-             this._authNavStatusSource.next(true); 
-             return true;         
+           this._authNavStatusSource.next(true);
+          this._roleStatusSource.next('user');
+
+           if (body.UserName = 'dens1994@mail.ru') {
+             this._roleStatusSource.next('admin');
+       }
+
+       return true;         
     })
      
     }
@@ -43,12 +56,14 @@ export class AuthService    {
     logout(){
         localStorage.removeItem('auth_token');
         this.loggedIn = false;
-        this._authNavStatusSource.next(false);
+      this._authNavStatusSource.next(false);
+      this._roleStatusSource.next(" ");
     }
 
     isLoggedIn(){
         return this.loggedIn;
     }
 
+   
 
 }

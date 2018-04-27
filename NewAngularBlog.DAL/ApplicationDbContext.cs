@@ -9,6 +9,10 @@ namespace NewAngularBlog.DAL
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        public ApplicationDbContext()
+        {
+        }
+
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }

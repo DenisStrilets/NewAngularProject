@@ -18,7 +18,8 @@ import { UserSendModel } from "../../models/userSendModel";
 export class RegistrationComponent implements OnInit {
     
       form: FormGroup;
-      exist:boolean;
+     exist: boolean;
+     
       constructor(private usersService: UserService, private router: Router) {
      
       }
@@ -36,11 +37,11 @@ export class RegistrationComponent implements OnInit {
       
       onSubmit() {
         const {email, password, name,location} = this.form.value;
-        const user = new UserSendModel(email, password, name,location);
+        const user = new UserSendModel(email, password, name,location,"user");
         this.usersService.addUser(user).subscribe((result:UserSendModel) => {
             console.log(result);
             if (!result.exist) {
-                 
+              
               this.router.navigateByUrl('/login');
               return;
             }  

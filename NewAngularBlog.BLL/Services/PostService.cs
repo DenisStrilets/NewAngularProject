@@ -52,7 +52,7 @@ namespace NewAngularBlog.BLL.Services
             post.Title = postSendViewModel.Title;
             post.Description = postSendViewModel.Description;
 
-
+            
 
 
             if (post == null)

@@ -17,13 +17,21 @@
                                     <h3><a [routerLink]="['post', item.postId]" class="nav-link">{{item.title}}</a></h3>
                             </h3>
                         </div>
-                        <div class="col-sm-3">
+
+
+                      <div  class="col-sm-3">
 
                             <h4 class="pull-right">
                                 <small>Author: {{item.author}}</small>
-                                <span class="glyphicon glyphicon-remove-circle" (click)="dell(item.postId)"></span>
+
+                              <ng-template [ngIf]= "role=='admin'" >
+                                  <span class="glyphicon glyphicon-remove-circle" (click)="dell(item.postId)"></span>
+                                </ng-template>
+
                             </h4>
                         </div>
+
+
                     </div>
                 </div>
             </div>
